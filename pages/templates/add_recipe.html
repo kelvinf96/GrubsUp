@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+    <form method="post" action="{% url 'recipes:add_recipe' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit">
+    </form>
+{% else %}
+    <p>You need to be signed in to create a recipe</p>
+    <button><a href='{% url "login" %}'>Login</a></button>
+    <button><a href='{% url "signup" %}'>Signup</a></button>
+
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class='text-center'>All recipes</h1>
+<div class="row">
+    {% if all_recipes %}
+    {% for r in all_recipes %}
+    <div class="col-3 ml-4" style="border: 1px solid black">
+        <div class="row">
+            <div class="col pt-2">
+                <img src='{{r.image.url}}' alt='{{r.name}}' class='img-responsive' style='max-height: 300px'>
+            </div>
+        </div>
+        <p><a href='{% url "recipes:single_recipe" r.id %}'>{{ r.name }}</a></p>
+        <p>{{ r.description }}</p>
+        <p>Cooking time: {{r.cooking_hours}} hrs {{r.cooking_minutes}} minutes.</p>
+    </div>
+{% endfor %}
+</div>
+{% endif %}
+{% endblock %}

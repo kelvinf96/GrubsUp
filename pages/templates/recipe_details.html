@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for r in requested_recipe %}
+<img src="{{ r.image.url }}" style="max-height: 300px">
+<h1>{{ r.name }}</h1>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class='text-center'>All ingredients</h1>
+{% if ingredients %}
+{% for i in ingredients %}
+<div class="row">
+    <p>{{ i.name }}</p>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+
