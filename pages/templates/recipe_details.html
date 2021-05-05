@@ -3,5 +3,26 @@
 {% for r in requested_recipe %}
 <img src="{{ r.image.url }}" style="max-height: 300px">
 <h1>{{ r.name }}</h1>
+<h4>Ingredient list for {{ r.name }}</h4>
+{% if recipe_ingredient %}
+    {% for ing in recipe_ingredient %}
+    <p>{{ ing.quantity }} of {{ ing.ingredient }}'s</p>
+    {% endfor %}
+{% else %}
+    <p>No ingredients listed.</p>
+{% endif %}
+<h4>Steps to make {{r.name}}</h4>
+{% if recipe_steps %}
+    {% for step in recipe_steps %}
+        <p>{{ step.step }}</p>
+    {% endfor %}
+{% else %}
+    <p>Recipe has no steps</p>
+{% endif %}
+<div>
+    <button class="btn btn-info"><a href="{% url 'recipes:add_step' r.pk %}" class="text-white">Add Step</a></button>
+    <button class="btn btn-danger"><a href="{% url 'recipes:add_ingredient' r.pk %}" class="text-white">Add Ingredient</a></button>
+    <button class="btn btn-success"><a href="{% url 'recipes:publish_recipe' r.pk %}" class="text-white">Publish</a></button>
+</div>
 {% endfor %}
 {% endblock %}

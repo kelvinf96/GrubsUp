@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{user.username}}'s Recipes</h1>
+{% if my_recipes %}
+    {% for mr in my_recipes %}
+    <h3><a href="{% url 'recipes:single_recipe' mr.id %}">{{mr.name}}</a></h3>
+    <img src="{{mr.image.url}}" style="max-height:300px">
+        {% if mr.published %}
+        <p>Recipe is published</p>
+        {% else %}
+        <p>Recipe not published</p>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
